@@ -1,0 +1,35 @@
+{% extends 'auctions/layout.html' %}
+
+{% block title %}
+    Create Auctions
+{% endblock %}
+
+{% block body %}
+    <form action="{% url 'index' %}" method='POST'>
+        {% csrf_token %}
+        <div>
+            <p>Title</p>
+            <input type="text" name="title">
+        </div>
+
+        <div>
+            <p>Description</p>
+            <input type="text" name="description">
+        </div>
+
+        <div>
+            <p>Starting bids</p>
+            <input type="number" name="bids">
+        </div>
+
+        <div>
+            <p>Photo</p>
+            <input type="url" name="photo">
+        </div>
+        <select name="categories">
+            <option value="categories1">categories1</option>
+            <option value="categories2">categories2</option>
+        </select>
+        <input type="submit" value="Create">
+    </form>
+{% endblock %}
