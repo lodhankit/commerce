@@ -16,5 +16,7 @@ class AuctionList(models.Model):
     categories = models.CharField(max_length=50)
 
 class Comments(models.Model):
-    username = models.ForeignKey(User,on_delete=models.CASCADE)
-    comment = models.TextField(blank=True)
+    username = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(AuctionList, on_delete=models.CASCADE, related_name="comments")
+    text = models.TextField(blank=True)
+    timestamp = models.DateTimeField(auto_now_add=True)

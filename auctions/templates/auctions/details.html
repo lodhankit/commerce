@@ -18,10 +18,11 @@
         <input type="text" name="comment">
         <input type="submit" value="submit">
     </form>
-    {% if comment_details %}
-        <p>{{comment_details.comment}}</p>
-        <p>{{comment_details.username}}</p>
-    {% else %}
-        <p>No comments yet</p>
-    {% endif %}
+    {% for cmt in product_comments %}
+        <p>{{cmt.username}}</p>
+        <p>{{cmt.text}}</p>
+        <p>{{cmt.timestamp}}</p>
+    {% empty %}
+        <p>No comments Yet....Be the first One </p>
+    {% endfor %}
 {% endblock %}

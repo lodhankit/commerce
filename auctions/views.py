@@ -77,17 +77,13 @@ def create(request):
     return render(request, "auctions/createlist.html")\
     
 def details(request, product_id):
-    user = User.objects.get(username=request.user)
-    if(request.method == 'POST'):
-        comment = request.POST['comment']
-        comments = Comments.objects.create(username=user, comment=comment)
-        comments.save()
-    try:
-        comment_details = Comments.objects.get(username=user)
-    except:
-        comment_details = []
     product_details = AuctionList.objects.get(id=product_id)
+    if(request.method == 'POST'):
+        comment = request.POST["comment"]
+        comment_details = Comments.objects.create(username=request.user, product=product_details, text = comment)
+        comment_details.save()
+    comment = product_details.comments.all()
     return render(request, "auctions/details.html",{
         "details": product_details,
-        "comment_details":comment_details
+        "product_comments": comment
     })
