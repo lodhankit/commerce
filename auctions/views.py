@@ -87,3 +87,19 @@ def details(request, product_id):
         "details": product_details,
         "product_comments": comment
     })
+
+def category(request):
+    all_product = AuctionList.objects.all()
+    all_products = set()
+    for product in all_product:
+        all_products.add(product.categories)
+    return render(request, "auctions/categories.html",{
+        "all_products":all_products,
+        
+    })
+
+def details_category(request, product_category):
+    products = AuctionList.objects.filter(categories=product_category)
+    return render(request, "auctions/index.html", {
+        "auctionslist":products
+    })

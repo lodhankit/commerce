@@ -1,0 +1,6 @@
+.truncate{
+    display:inline-block;
+    max-height: 100px;
+    overflow: hidden;
+    white-space: normal;
+}
